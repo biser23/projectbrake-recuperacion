@@ -1,7 +1,8 @@
 const express = require('express')
 const { get } = require('mongoose')
 const app = express()
-PORT = 3000
+require('dotenv').config()
+PORT = process.env.PORT || 3000
 
 app.get('/', (req, res) => (res.send('Proyecto BACK')))
 
