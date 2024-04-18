@@ -1,11 +1,12 @@
 const express = require('express')
 const dbConnection = require('./config/config')
-const { get } = require('mongoose')
+/*const { get } = require('mongoose')*/
 const app = express()
 require('dotenv').config()
-PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
+const routes = require('./routes/tasks');
 
-app.get('/', (req, res) => (res.send('Proyecto BACK')))
+app.use('/', routes);
 
 dbConnection()
 
