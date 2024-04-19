@@ -34,13 +34,6 @@ const TaskController = {
         console.log(error)
     }
   },
-}
-  module.exports = TaskController
-  /*
-  ,
-  
-  // Esta es para ver el renderizado en SSR
-  
   async getByID (req, res) {
     try {
       const id = req.params._id;
@@ -50,22 +43,43 @@ const TaskController = {
         console.log(error)
     }
   },
-  async updateCompleted(req, res) {
+  async deleteTask (req, res) {
     try {
-      const id = req.params._id;
-      const udpatedTask = await Task.findByIdAndUpdate(
-        id, {
-          completed: true
-        }, {new: true}
-      )
-      if(!udpatedTask) {
-        return res.status(404).json({mensaje: 'Task id not found'})
-      } 
-      res.json(udpatedTask)
+      const id = req.params._id
+      const deletedTask = await Task.findByIdAndDelete(id)
+      if (!deletedTask) {
+        return res.status(404).json({message: "Task with that id not found"})
+      }  
+      res.json({message: "Task deleted successfully", deletedTask})
     } catch (error) {
-      console.log(error)
+        console.log(error)
     }
-  },
+},
+async updateCompleted(req, res) {
+  try {
+    const id = req.params._id;
+    const udpatedTask = await Task.findByIdAndUpdate(
+      id, {
+        completed: true
+      }, {new: true}
+    )
+    if(!udpatedTask) {
+      return res.status(404).json({mensaje: 'Task id not found'})
+    } 
+    res.json(udpatedTask)
+  } catch (error) {
+    console.log(error)
+  }
+}
+}
+  module.exports = TaskController
+  /*
+  ,
+  
+  // Esta es para ver el renderizado en SSR
+  
+  
+ 
   async updateByName(req, res) {
     try {
       const id = req.params._id
@@ -80,18 +94,7 @@ const TaskController = {
       console.log(error)
     }
   },
-  async deleteTask (req, res) {
-    try {
-      const id = req.params._id
-      const deletedTask = await Task.findByIdAndDelete(id)
-      if (!deletedTask) {
-        return res.status(404).json({message: "Task with that id not found"})
-      }  
-      res.json({message: "Task deleted successfully", deletedTask})
-    } catch (error) {
-        console.log(error)
-    }
-}
+  
 
 }*/
 
