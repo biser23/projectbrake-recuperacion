@@ -7,6 +7,9 @@ const routes = require('./routes/products');
 
 app.use('/', routes);
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
 dbConnection()
 
 app.listen(PORT, () => {
